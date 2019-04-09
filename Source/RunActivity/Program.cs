@@ -22,10 +22,20 @@ using Orts.Viewer3D.Debugging;
 using Orts.Viewer3D.Processes;
 using ORTS.Common;
 using ORTS.Settings;
+using System;
+using System.IO;
 using System.Linq;
+using System.Reflection;
+using System.Runtime.InteropServices;
 
 namespace Orts
 {
+    static class NativeMethods
+    {
+        [DllImport("kernel32.dll", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern bool SetDllDirectory(string pathName);
+    }
+
     static class Program
     {
         public static Simulator Simulator;
@@ -43,6 +53,18 @@ namespace Orts
         {
             var options = args.Where(a => a.StartsWith("-") || a.StartsWith("/")).Select(a => a.Substring(1));
             var settings = new UserSettings(options);
+
+            string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "Native");
+            if (IntPtr.Size == 8) // or: if(Environment.Is64BitProcess) // .NET 4.0
+            {
+                path = Path.Combine(path, "X64");
+            }
+            else
+            {
+                // X32
+                path = Path.Combine(path, "X86");
+            }
+            NativeMethods.SetDllDirectory(path);
 
             var game = new Game(settings);
             game.PushState(new GameStateRunActivity(args));
