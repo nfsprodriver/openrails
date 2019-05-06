@@ -668,11 +668,7 @@ namespace Orts.Viewer3D
 #if DEBUG_RENDER_STATE
 			DebugRenderState(graphicsDevice, "RenderFrame.Draw");
 #endif
-<<<<<<< HEAD
-            var logging = UserInput.InputSettings != null && UserInput.IsPressed(UserCommands.DebugLogRenderFrame);
-=======
             var logging = UserInput.IsPressed(UserCommand.DebugLogRenderFrame);
->>>>>>> cb46346647105fd3c6e710dedd3cd79c646ddc47
             if (logging)
             {
                 Console.WriteLine();

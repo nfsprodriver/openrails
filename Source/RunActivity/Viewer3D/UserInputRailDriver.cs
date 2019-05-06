@@ -22,17 +22,8 @@ using Microsoft.Win32;
 using Orts.Parsers.Msts;
 using Orts.Simulation.RollingStocks;
 using ORTS.Common;
-<<<<<<< HEAD
-using ORTS.Settings;
-using PIEHid32Net;
-using PIEHid64Net;
-using System;
-using System.Diagnostics;
-using System.IO;
-=======
 using ORTS.Common.Input;
 using PIEHidDotNet;
->>>>>>> cb46346647105fd3c6e710dedd3cd79c646ddc47
 
 namespace Orts.Viewer3D
 {

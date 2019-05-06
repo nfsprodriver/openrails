@@ -17,13 +17,9 @@
 
 // This file is the responsibility of the 3D & Environment Team. 
 
-<<<<<<< HEAD
 using Microsoft.Xna.Framework;
-=======
 using System;
 using System.Collections.Generic;
-using Microsoft.Xna.Framework.Graphics;
->>>>>>> cb46346647105fd3c6e710dedd3cd79c646ddc47
 using Orts.Common;
 using Orts.Simulation;
 using Orts.Simulation.RollingStocks;
