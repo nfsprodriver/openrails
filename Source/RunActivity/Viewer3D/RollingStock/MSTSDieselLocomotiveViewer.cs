@@ -17,17 +17,19 @@
 
 // This file is the responsibility of the 3D & Environment Team. 
 
+<<<<<<< HEAD
 using Microsoft.Xna.Framework;
-using Orts.Common;
-using Orts.Simulation;
-using Orts.Simulation.Physics;
-using Orts.Simulation.RollingStocks;
-using Orts.Simulation.RollingStocks.SubSystems.PowerSupplies;
-using ORTS.Common;
-using ORTS.Settings;
+=======
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.Xna.Framework.Graphics;
+>>>>>>> cb46346647105fd3c6e710dedd3cd79c646ddc47
+using Orts.Common;
+using Orts.Simulation.Physics;
+using Orts.Simulation.RollingStocks;
+using ORTS.Common;
+using ORTS.Common.Input;
 
 namespace Orts.Viewer3D.RollingStock
 {
@@ -69,7 +71,7 @@ namespace Orts.Viewer3D.RollingStock
 
         public override void InitializeUserInputCommands()
         {
-            UserInputCommands.Add(UserCommands.ControlDieselPlayer, new Action[] { Noop, () => new TogglePlayerEngineCommand(Viewer.Log) });
+            UserInputCommands.Add(UserCommand.ControlDieselPlayer, new Action[] { Noop, () => new TogglePlayerEngineCommand(Viewer.Log) });
             base.InitializeUserInputCommands();
         }
 
