@@ -105,9 +105,9 @@ namespace ORTS
 
             missingDependencies.Add(new DependencyHint()
             {
-                Name = ("Microsoft .NET Framework 4.7.2 or later"),
+                Name = ("Microsoft .NET Framework 4.8 or later"),
                 Text = "Please go to\n https://support.microsoft.com/en-us/help/4054530/microsoft-net-framework-4-7-2-offline-installer-for-windows \nto download the installation package " +
-                "for Microsoft .NET Framework 4.7.2 and install the software.",
+                "for Microsoft .NET Framework 4.8 and install the software.",
                 Url = "https://support.microsoft.com/en-us/help/4054530/microsoft-net-framework-4-7-2-offline-installer-for-windows"
             });
         }
