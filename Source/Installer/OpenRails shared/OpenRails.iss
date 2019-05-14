@@ -11,9 +11,6 @@
 #define MyAppSourceName "Download Open Rails source code"
 #define MyAppBugName "Report a bug in Open Rails"
 
-#define DotNETName "Microsoft .NET Framework 3.5 SP1"
-#define XNAName "Microsoft XNA Framework 3.1"
-
 #define MyAppURL "http://openrails.org"
 #define MyAppSourceURL "http://openrails.org/download/source/"
 #define MyAppSupportURL "http://launchpad.net/or"
@@ -21,8 +18,6 @@
 #define MyAppExeName "OpenRails.exe"
 #define MyAppManual "Documentation\Manual.pdf"
 
-#define XNARedistPath "..\..\..\Microsoft XNA Framework Redistributable 3.1"
-#define XNARedist "xnafx31_redist.msi"
 #define MyAppProgPath "..\..\..\Open Rails\Program"
 #define MyAppDocPath "..\..\..\Open Rails\Documentation"
 
@@ -84,19 +79,6 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked; OnlyBelowVersion: 0,6.1
 
 [Files]
-
-; Don't install these prerequisites until after the licence file has been accepted.
-; .NET Framework redistributable
-Source: {#NetRedistPath}\{#NetRedist}; DestDir: {tmp}; Flags: deleteafterinstall; AfterInstall: InstallFrameworkNet35SP1; Check: IsNotInstalledFrameworkNet35SP1
-
-; XNA Framework redistributable
-; Can't make this work in the same way as installing .NET Framework. Keep getting error code 2
-;Source: {#XNARedistPath}\{#XNARedist}; DestDir: {tmp}; Flags: deleteafterinstall; AfterInstall: InstallFrameworkXNA31; Check: IsNotInstalledFrameworkXNA31
-; Instead, use the clumsier mechanism below: Unpack XNA always, then delete if not needed. Install of XNA is skipped if file is missing.
-
-; Unpack XNA always, then delete if not needed.
-Source: {#XNARedistPath}\{#XNARedist}; DestDir: {tmp}; Flags: deleteafterinstall; AfterInstall: CheckFrameworkXNA31; 
-
 ; The game itself
 Source: {#MyAppProgPath}\*; Excludes: Readme*.txt; DestDir: {app}; Flags: ignoreversion recursesubdirs
 Source: ..\Readme.txt; DestDir: {app}; Flags: ignoreversion
@@ -111,98 +93,4 @@ Name: "{commondesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: 
 Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: quicklaunchicon
 
 [Run]
-; 'skipifdoesntexist' ensures that install of XNA is skipped if file is missing.
-Filename: msiexec.exe; StatusMsg: "Installing {#XNAName} (takes about 1 min) ..."; Parameters: "/qn /i ""{tmp}\{#XNARedist}"""; Flags: skipifdoesntexist;
-
 Filename: "{app}\{#MyAppExeName}"; StatusMsg: "Installing Open Rails ..."; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
- 
-[Code]
-function IsNotInstalledFrameworkNet35SP1: Boolean;
-var
-  data: Cardinal;
-  StatusText: string;
-begin
-  // Gets left on screen while file is unpacked.
-  StatusText := WizardForm.StatusLabel.Caption;
-  WizardForm.StatusLabel.Caption := 'Unpacking {#DotNETName}...';
-  result := true;
-  if (RegQueryDWordValue(HKLM, 'Software\Microsoft\NET Framework Setup\NDP\v3.5', 'Install', data)) then begin
-    if (data = 1) then begin
-      if (RegQueryDWordValue(HKLM, 'Software\Microsoft\NET Framework Setup\NDP\v3.5', 'SP', data)) then begin
-        if (data = 1) then begin
-          result := false
-          // Prompt is repeated. Help suggests a way around this.
-          //MsgBox('{#DotNETName} is already installed', mbError, MB_OK);
-        end;
-      end;
-    end;
-    WizardForm.StatusLabel.Caption := StatusText;
-    WizardForm.ProgressGauge.Style := npbstNormal;
-  end;
-end;
-
-procedure CheckFrameworkXNA31;
-var
-    key: string;
-    data: cardinal;
-    StatusText: string;
-begin
-  // Gets left on screen while file is unpacked.
-  if IsWin64 then begin
-    key := 'SOFTWARE\Wow6432Node\Microsoft\XNA\Framework\v3.1';
-  end else begin
-    key := 'SOFTWARE\Microsoft\XNA\Framework\v3.1';
-  end;
-  if RegQueryDWordValue(HKLM, key, 'Installed', data) and (data = 1) then begin
-    DeleteFile(ExpandConstant('{tmp}\{#XNARedist}')); // So the [Run]Filename is skipped.
-    //MsgBox('{#XNAName} is already installed', mbError, MB_OK);
-  end;                                                              
-end;
-
-(*
-function IsNotInstalledFrameworkXNA31: Boolean;
-var
-    key: string;
-    data: cardinal;
-begin
-  // Gets left on screen while file is unpacked.
-  WizardForm.StatusLabel.Caption := 'Unpacking {#XNAName}...';
-  if IsWin64 then begin
-    key := 'SOFTWARE\Wow6432Node\Microsoft\XNA\Framework\v3.1';
-  end else begin
-    key := 'SOFTWARE\Microsoft\XNA\Framework\v3.1';
-  end;
-  result := true;
-  if RegQueryDWordValue(HKLM, key, 'Installed', data) and (data = 1) then begin
-    result := false;
-    //MsgBox('{#XNAName} is already installed', mbError, MB_OK);
-  end;                                                              
-end;
-
-procedure InstallFrameworkXNA31;
-var
-  StatusText: string;
-  ResultCode: Integer;
-begin
-  StatusText := WizardForm.StatusLabel.Caption;
-  WizardForm.StatusLabel.Caption := 'Installing {#XNAName}...';
-  WizardForm.ProgressGauge.Style := npbstMarquee;
-  try
-    // XNA setup execution code
-    begin
-      // Note: msiexec uses slightly different parameters from dotnetfx35.exe
-      //if not Exec(ExpandConstant('msiexec.exe /package {tmp}\xnafx31_redist.msi'), ' /q /norestart', '', SW_SHOW, ewWaitUntilTerminated, ResultCode) then
-      //if not Exec(ExpandConstant('msiexec.exe /package {tmp}\xnafx31_redist.msi'), '/q /norestart /l C:\logfile.txt', '', SW_SHOW, ewWaitUntilTerminated, ResultCode) then
-      if not ShellExec('', ExpandConstant('msiexec.exe /package {tmp}\xnafx31_redist.msi'), '/q /norestart /l C:\logfile.txt', '', SW_SHOW, ewWaitUntilTerminated, ResultCode) then
-      //if not ShellExec('', ExpandConstant('{app}\README.txt'), '', '', SW_SHOW, ewNoWait, ResultCode) then
-           begin
-        // Tell the user why the installation failed
-        MsgBox('Installing {#XNAName} failed with code: ' + IntToStr(ResultCode) + '.', mbError, MB_OK);
-      end;
-    end;
-  finally
-    WizardForm.StatusLabel.Caption := StatusText;
-    WizardForm.ProgressGauge.Style := npbstNormal;
-  end;
-end;
-*)

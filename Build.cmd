@@ -68,24 +68,6 @@ IF NOT EXIST "Source\ORTS.sln" (
 	EXIT /B 1
 )
 
-IF "%Mode%" == "Stable" (
-	CALL :create "Microsoft .NET Framework Redistributable 3.5 SP1"
-	CALL :create "Microsoft .NET Framework Redistributable 3.5 SP1 download manager"
-	CALL :create "Microsoft XNA Framework Redistributable 3.1"
-	IF NOT EXIST "Microsoft .NET Framework Redistributable 3.5 SP1\dotnetfx35.exe" (
-		>&2 ECHO ERROR: Missing required file for "%Mode%" build: "Microsoft .NET Framework Redistributable 3.5 SP1\dotnetfx35.exe".
-		EXIT /B 1
-	)
-	IF NOT EXIST "Microsoft .NET Framework Redistributable 3.5 SP1 download manager\dotnetfx35setup.exe" (
-		>&2 ECHO ERROR: Missing required file for "%Mode%" build: "Microsoft .NET Framework Redistributable 3.5 SP1 download manager\dotnetfx35setup.exe".
-		EXIT /B 1
-	)
-	IF NOT EXIST "Microsoft XNA Framework Redistributable 3.1\xnafx31_redist.msi" (
-		>&2 ECHO ERROR: Missing required file for "%Mode%" build: "Microsoft XNA Framework Redistributable 3.1\xnafx31_redist.msi".
-		EXIT /B 1
-	)
-)
-
 REM Get code revision.
 SET Revision=000
 IF EXIST ".svn" (
@@ -131,6 +113,8 @@ PUSHD Source\Locales && CALL Update.bat non-interactive && POPD || GOTO :error
 REM Run unit tests (9009 means XUnit itself wasn't found, which is an error).
 xunit.console.x86 Program\Tests.dll /nunit xunit.xml
 IF "%ERRORLEVEL%" == "9009" GOTO :error
+
+CALL :copy "Program\PIEHid64Net.dll" "Program\PIEHidDotNet.dll" || GOTO :error
 
 CALL :copy "Program\RunActivity.exe" "Program\RunActivityLAA.exe" || GOTO :error
 editbin /NOLOGO /LARGEADDRESSAWARE "Program\RunActivityLAA.exe" || GOTO :error
