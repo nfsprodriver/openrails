@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2019-05-14 04:35:30+0200\n"
-"PO-Revision-Date: 2019-05-14 04:35:30+0200\n"
+"POT-Creation-Date: 2019-05-21 01:04:07+0200\n"
+"PO-Revision-Date: 2019-05-21 01:04:07+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -719,22 +719,22 @@ msgstr ""
 msgid "Control AI Fire Reset"
 msgstr ""
 
-#: ../../ORTS.Settings/InputSettings.cs:694
+#: ../../ORTS.Settings/InputSettings.cs:695
 #, csharp-format
 msgid "{0} requires and is modified by Shift"
 msgstr ""
 
-#: ../../ORTS.Settings/InputSettings.cs:696
+#: ../../ORTS.Settings/InputSettings.cs:697
 #, csharp-format
 msgid "{0} requires and is modified by Control"
 msgstr ""
 
-#: ../../ORTS.Settings/InputSettings.cs:698
+#: ../../ORTS.Settings/InputSettings.cs:699
 #, csharp-format
 msgid "{0} requires and is modified by Alt"
 msgstr ""
 
-#: ../../ORTS.Settings/InputSettings.cs:729
+#: ../../ORTS.Settings/InputSettings.cs:730
 #, csharp-format
 msgid "{0} and {1} both match {2}"
 msgstr ""

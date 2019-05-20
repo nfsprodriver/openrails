@@ -1742,7 +1742,7 @@ namespace Orts.Simulation.AIs
                 else if (nextAspect == MstsSignalAspect.STOP)
                 {
                     // if stop but train is well away from signal allow to close; also if at end of path.
-                    if (distanceToSignal > 5 * signalApproachDistanceM ||
+                    if (DistanceToSignal > 5 * signalApproachDistanceM ||
                         (TCRoute.TCRouteSubpaths[TCRoute.activeSubpath].Count - 1 == PresentPosition[0].RouteListIndex))
                     {
                         MovementState = AI_MOVEMENT_STATE.ACCELERATING;
@@ -1836,7 +1836,7 @@ namespace Orts.Simulation.AIs
                     }
                 }
             }
-            if (AuxActionnextActionInfo != null && MovementState == AI_MOVEMENT_STATE.STOPPED && tryBraking && distanceToSignal > clearingDistanceM
+            if (AuxActionnextActionInfo != null && MovementState == AI_MOVEMENT_STATE.STOPPED && tryBraking && DistanceToSignal > clearingDistanceM
                 && EndAuthorityType[0] != END_AUTHORITY.RESERVED_SWITCH && DistanceToEndNodeAuthorityM[0] <= 2.0f * junctionOverlapM)   // && ControlMode == TRAIN_CONTROL.AUTO_NODE)
             {
                 MovementState = AI_MOVEMENT_STATE.BRAKING;
@@ -4155,7 +4155,7 @@ namespace Orts.Simulation.AIs
             if (Simulator.TimetableMode) removeIt = true;
             else if (TrainType == TRAINTYPE.AI_PLAYERHOSTING || Simulator.OriginalPlayerTrain == this) removeIt = false;
             else if (TCRoute.TCRouteSubpaths.Count == 1 || TCRoute.activeSubpath != TCRoute.TCRouteSubpaths.Count - 1) removeIt = true;
-            else if (NextSignalObject[0] != null && NextSignalObject[0].isSignal && distanceToSignal < 25 && distanceToSignal >= 0 && PresentPosition[1].DistanceTravelledM < distanceThreshold)
+            else if (NextSignalObject[0] != null && NextSignalObject[0].isSignal && DistanceToSignal < 25 && DistanceToSignal >= 0 && PresentPosition[1].DistanceTravelledM < distanceThreshold)
             {
                 removeIt = false;
                 MovementState = AI_MOVEMENT_STATE.FROZEN;

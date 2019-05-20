@@ -3063,7 +3063,7 @@ namespace Orts.Simulation.Timetables
                                         int reqSectionIndex = NextSignalObject[0].TCReference;
                                         float endOffset = NextSignalObject[0].TCOffset;
 
-                                        distanceToSignal = GetDistanceToTrain(reqSectionIndex, endOffset);
+                                        DistanceToSignal = GetDistanceToTrain(reqSectionIndex, endOffset);
                                         SignalObjectItems.RemoveAt(0);
                                     }
                                 }
@@ -3082,7 +3082,7 @@ namespace Orts.Simulation.Timetables
                 else if (nextAspect == MstsSignalAspect.STOP)
                 {
                     // if stop but train is well away from signal allow to close
-                    if (distanceToSignal > 5 * signalApproachDistanceM)
+                    if (DistanceToSignal > 5 * signalApproachDistanceM)
                     {
                         ResetActions(true);
                         DelayedStartMoving(AI_START_MOVEMENT.PATH_ACTION);

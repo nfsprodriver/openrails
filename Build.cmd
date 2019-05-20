@@ -69,16 +69,7 @@ IF NOT EXIST "Source\ORTS.sln" (
 )
 
 REM Get code revision.
-SET Revision=000
-IF EXIST ".svn" (
-	FOR /F "usebackq tokens=1" %%R IN (`svn --non-interactive info --show-item revision .`) DO SET Revision=%%R
-)
-IF EXIST ".git" (
-	FOR /F "usebackq tokens=1" %%R IN (`git describe --first-parent --always`) DO SET Revision=%%R
-)
-IF "%Revision%" == "000" (
-	>&2 ECHO WARNING: No Subversion or Git revision found.
-)
+SET Revision=4328
 
 REM Recreate Program directory for output.
 CALL :recreate "Program" || GOTO :error
@@ -95,6 +86,7 @@ REM Set update channel.
 ECHO Set update channel to "%Mode%".
 
 REM Set version number.
+SET Version=1.3.1
 IF NOT "%Version%" == "" (
 	>Program\Version.txt ECHO %Version%. || GOTO :error
 	ECHO Set version number to "%Version%".
