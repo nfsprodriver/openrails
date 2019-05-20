@@ -169,14 +169,6 @@ IF "%Mode%" == "Stable" (
 	IF %ERRORLEVEL% GEQ 8 GOTO :error
 	ROBOCOPY /MIR /NJH /NJS "Program\Documentation" "Open Rails\Documentation"
 	IF %ERRORLEVEL% GEQ 8 GOTO :error
-	>"Source\Installer\OpenRails shared\Version.iss" ECHO #define MyAppVersion "%Version%.%Revision%" || GOTO :error
-	iscc "Source\Installer\OpenRails from download\OpenRails from download.iss" || GOTO :error
-	iscc "Source\Installer\OpenRails from DVD\OpenRails from DVD.iss" || GOTO :error
-	CALL :move "Source\Installer\OpenRails from download\Output\OpenRailsTestingSetup.exe" "OpenRails-%Mode%-Setup.exe" || GOTO :error
-	CALL :move "Source\Installer\OpenRails from DVD\Output\OpenRailsTestingDVDSetup.exe" "OpenRails-%Mode%-DVDSetup.exe" || GOTO :error
-	REM *** Special build step: signs binaries ***
-	IF NOT "%JENKINS_TOOLS%" == "" CALL "%JENKINS_TOOLS%\sign.cmd" "OpenRails-%Mode%-Setup.exe" || GOTO :error
-	IF NOT "%JENKINS_TOOLS%" == "" CALL "%JENKINS_TOOLS%\sign.cmd" "OpenRails-%Mode%-DVDSetup.exe" || GOTO :error
 )
 
 REM Create binary and source zips.
