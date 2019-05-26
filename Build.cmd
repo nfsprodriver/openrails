@@ -30,7 +30,7 @@ CALL :list-or-check-tool "svn.exe" "[UTS] Subversion tool"
 CALL :list-or-check-tool "MSBuild.exe" "[UTS] Microsoft Visual Studio build tool"
 CALL :list-or-check-tool "lazbuild.exe" "[UTS] Lazarus compiler"
 CALL :list-or-check-tool "strip.exe" "[UTS] Lazarus tool"
-CALL :list-or-check-tool "xunit.console.x86.exe" "[UTS] XUnit tool"
+CALL :list-or-check-tool "xunit.console.clr4.x86.exe" "[UTS] XUnit tool"
 CALL :list-or-check-tool "editbin.exe" "[UTS] Microsoft Visual Studio editbin tool"
 CALL :list-or-check-tool "rcedit-x86.exe" "[UTS] Electron rcedit tool"
 CALL :list-or-check-tool "7za.exe" "[UTS] 7-zip tool"
@@ -103,8 +103,14 @@ REM Build locales.
 PUSHD Source\Locales && CALL Update.bat non-interactive && POPD || GOTO :error
 
 REM Run unit tests (9009 means XUnit itself wasn't found, which is an error).
-xunit.console.x86 Program\Tests.dll /nunit xunit.xml
+CALL :delete "xunit.xml" || GOTO :error
+xunit.console.clr4.x86 Program\Tests.dll /nunit xunit.xml
 IF "%ERRORLEVEL%" == "9009" GOTO :error
+CALL :file-size xunit.xml
+IF "%FileSize%" LEQ 100 (
+	>&2 ECHO ERROR: Test results file "xunit.xml" is %FileSize% bytes; expected more than 100 bytes.
+	GOTO :error
+)
 
 CALL :copy "Program\PIEHid64Net.dll" "Program\PIEHidDotNet.dll" || GOTO :error
 
@@ -211,6 +217,12 @@ REM Utility for moving files with logging.
 ECHO Move "%~1" "%~2"
 1>nul MOVE /Y "%~1" "%~2"
 GOTO :EOF
+
+REM Gets the size of a file.
+:file-size
+SET FileSize=%~z1
+GOTO :EOF
+
 
 REM Utility for copying files with logging.
 :copy
