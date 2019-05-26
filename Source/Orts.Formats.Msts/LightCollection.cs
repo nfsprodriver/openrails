@@ -52,7 +52,6 @@ namespace Orts.Formats.Msts
                 new STFReader.TokenProcessor("transition", ()=>{ Transition = 1 <= stf.ReadFloatBlock(STFReader.UNITS.None, 0); }),
                 new STFReader.TokenProcessor("angle", ()=>{ Angle = stf.ReadFloatBlock(STFReader.UNITS.None, null); }),
             });
-            // Color byte order changed in XNA 4 from BGRA to RGBA
             Color = new Color()
             {
                 B = (byte)(Color),

@@ -641,13 +641,6 @@ float4 PSSignalLight(in VERTEX_OUTPUT In) : COLOR0
 //            and pixel shader versions within each technique/pass.           //
 ////////////////////////////////////////////////////////////////////////////////
 
-technique ImagePS2 {
-	pass Pass_0 {
-		VertexShader = compile vs_4_0_level_9_1 VSGeneral2();
-		PixelShader = compile ps_4_0_level_9_1 PSImage2();
-	}
-}
-
 technique ImagePS3 {
 	pass Pass_0 {
 		VertexShader = compile vs_4_0_level_9_3 VSGeneral3();

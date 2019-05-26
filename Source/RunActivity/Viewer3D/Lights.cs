@@ -662,14 +662,15 @@ namespace Orts.Viewer3D
                 IndexBuffer.SetData(indexData);
             }
             if (BlendState_SourceZeroDestOne == null)
-                BlendState_SourceZeroDestOne = new BlendState 
                 {
-                    ColorSourceBlend = Blend.Zero,
-                    ColorDestinationBlend = Blend.One,
-                    AlphaSourceBlend = Blend.Zero,
-                    AlphaDestinationBlend = Blend.One
-                };
-
+                    BlendState_SourceZeroDestOne = new BlendState 
+                    {
+                        ColorSourceBlend = Blend.Zero,
+                        ColorDestinationBlend = Blend.One,
+                        AlphaSourceBlend = Blend.Zero,
+                        AlphaDestinationBlend = Blend.One
+                    };
+                }
             UpdateState(lightViewer);
         }
 

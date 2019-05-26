@@ -847,7 +847,7 @@ namespace Orts.Viewer3D
             }
             else
             {
-                graphicsDevice.BlendState = BlendState.Opaque;
+                graphicsDevice.BlendState = BlendState.Opaque; 
                 if ((Options & SceneryMaterialOptions.AlphaTest) != 0)
                 {
                     // Transparency testing is enabled

@@ -200,7 +200,7 @@ namespace ORTS.Common
 
         static void WriteGraphicsAdapter(TextWriter output)
         {
- /*           foreach (var adapter in GraphicsAdapter.Adapters)
+            /*foreach (var adapter in GraphicsAdapter.Adapters)
             {
                 try
                 {

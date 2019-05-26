@@ -889,7 +889,7 @@ namespace Orts.Viewer3D
         {
             SurfaceFormat surfaceFormat = SurfaceFormatFromLoadFormat(loadSurfaceFormat, compressionFormat, pixelFlags, rgbBitCount);
 
-            TextureCube tx = new TextureCube(device, width, true, surfaceFormat); //hasMipMaps
+            TextureCube tx = new TextureCube(device, width, true /*has mipmaps*/, surfaceFormat);
 
             if (tx.Format != surfaceFormat)
             {
@@ -1693,8 +1693,7 @@ namespace Orts.Viewer3D
 
                 if (texture is TextureCube)
                 {
-                    // FIXME: MonoGame fails with the following:
-                    //(texture as TextureCube).GetData<byte>(face, i, null, data, 0, size);
+                    (texture as TextureCube).GetData<byte>(face, i, null, data, 0, size);
                 }
                 if (texture is Texture2D)
                 {
@@ -1738,8 +1737,7 @@ namespace Orts.Viewer3D
 
             if (texture is TextureCube)
             {
-                // FIXME: MonoGame fails with the following:
-                //(texture as TextureCube).GetData<byte>(face, mipLevel, null, data, 0, size);
+                (texture as TextureCube).GetData<byte>(face, mipLevel, null, data, 0, size);
             }
             if (texture is Texture2D)
             {

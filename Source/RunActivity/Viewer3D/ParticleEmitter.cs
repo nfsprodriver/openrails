@@ -171,7 +171,7 @@ namespace Orts.Viewer3D
             public Vector4 StartPosition_StartTime;
             public Vector4 InitialVelocity_EndTime;
             public Vector4 TargetVelocity_TargetTime;
-            public Vector4 TileXY_Vertex_ID;
+            public Vector4  TileXY_Vertex_ID;
             public Color Color_Random;
 
             public static readonly VertexElement[] VertexElements =

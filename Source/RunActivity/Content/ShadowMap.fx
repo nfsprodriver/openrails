@@ -132,10 +132,6 @@ VERTEX_OUTPUT_BLUR VSShadowMapBlur(in VERTEX_INPUT_BLUR In)
 
 	Out.Position = mul(In.Position, WorldViewProjection);
 	Out.SampleCentre = offsetTexCoord * ImageBlurStep;
-	Out.Sample_03.xy = (offsetTexCoord - float2(1.5, 0)) * ImageBlurStep;
-	Out.Sample_03.zw = (offsetTexCoord + float2(1.5, 0)) * ImageBlurStep;
-	Out.Sample_47.xy = (offsetTexCoord - float2(0, 1.5)) * ImageBlurStep;
-	Out.Sample_47.zw = (offsetTexCoord + float2(0, 1.5)) * ImageBlurStep;
 
 	return Out;
 }

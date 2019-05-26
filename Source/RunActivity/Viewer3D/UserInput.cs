@@ -63,8 +63,6 @@ namespace Orts.Viewer3D
             KeyboardState = game.IsActive ? new KeyboardState(GetKeysWithPrintScreenFix(Keyboard.GetState())) : new KeyboardState();
             MouseState = game.IsActive ? Mouse.GetState() : new MouseState(0, 0, LastMouseState.ScrollWheelValue, ButtonState.Released, ButtonState.Released, ButtonState.Released, ButtonState.Released, ButtonState.Released);
             // Monogame returns swapped button status anyway.
-            //MouseButtonsSwapped = System.Windows.Forms.SystemInformation.MouseButtonsSwapped;
-            MouseButtonsSwapped = false;
 
 #if DEBUG_RAW_INPUT
             for (Keys key = 0; key <= Keys.OemClear; key++)

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2019-05-27 00:33:56+0200\n"
-"PO-Revision-Date: 2019-05-27 00:33:57+0200\n"
+"POT-Creation-Date: 2019-05-27 01:31:37+0200\n"
+"PO-Revision-Date: 2019-05-27 01:31:38+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -1467,7 +1467,7 @@ msgstr ""
 
 #: ../../RunActivity/Viewer3D/Popups/HUDWindow.cs:1006
 #, csharp-format
-msgid "{0} ({1:F0} MB) ({2:F0} pixels x {3:F0} pixels)"
+msgid "{0} ({1:F0} MB)"
 msgstr ""
 
 #: ../../RunActivity/Viewer3D/Popups/HUDWindow.cs:1009

@@ -31,7 +31,6 @@ namespace Orts.Viewer3D.Processes
     public class RenderProcess
     {
         public const int ShadowMapCountMaximum = 4;
-        //public const int ShadowMapMipCount = 1;
 
         public Point DisplaySize { get; private set; }
         public GraphicsDevice GraphicsDevice { get { return Game.GraphicsDevice; } }
@@ -147,15 +146,8 @@ namespace Orts.Viewer3D.Processes
 
             if (Game.Settings.ShaderModel == 0)
             {
-                if (GraphicsDevice.GraphicsProfile == GraphicsProfile.HiDef)
-                    Game.Settings.ShaderModel = 3;
-                else if (GraphicsDevice.GraphicsProfile == GraphicsProfile.Reach)
-                    Game.Settings.ShaderModel = 2;
+                Game.Settings.ShaderModel = 4;
             }
-            else if (Game.Settings.ShaderModel < 2)
-                Game.Settings.ShaderModel = 2;
-            else if (Game.Settings.ShaderModel > 3)
-                Game.Settings.ShaderModel = 3;
 
             if (Game.Settings.ShadowMapDistance == 0)
                 Game.Settings.ShadowMapDistance = Game.Settings.ViewingDistance / 2;

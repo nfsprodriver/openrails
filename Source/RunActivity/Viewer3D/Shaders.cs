@@ -65,9 +65,6 @@ namespace Orts.Viewer3D
             //{
             //    // NOTE: We may need to implement a CompilerIncludeHandler here if we ever use #include in our shaders.
             //    var compiledEffect = Effect.CompileEffectFromFile(effectFileStream, null, null, CompilerOptions.None, TargetPlatform.Windows);
-            //    if (!compiledEffect.Success)
-            //        throw new InvalidOperationException(compiledEffect.ErrorsAndWarnings);
-            //    return compiledEffect.GetEffectCode();
             //}
 #endif
         }
@@ -318,7 +315,7 @@ namespace Orts.Viewer3D
 
         public void SetBlurData(Texture2D texture)
         {
-            blurTexture.SetValue(texture);
+            imageTexture.SetValue(texture);
             imageBlurStep.SetValue(texture != null ? 1f / texture.Width : 0);
         }
 

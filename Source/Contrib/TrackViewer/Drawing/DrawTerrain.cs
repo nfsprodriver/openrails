@@ -400,9 +400,6 @@ namespace ORTS.TrackViewer.Drawing
         public void Draw(DrawArea drawArea)
         {
             UpdateCamera(drawArea);
-
-            //device.SamplerStates[0].AddressU = TextureAddressMode.Wrap;
-            //device.SamplerStates[0].AddressV = TextureAddressMode.Wrap;
             device.SamplerStates[0] = new SamplerState
             {
                 AddressU = TextureAddressMode.Wrap,

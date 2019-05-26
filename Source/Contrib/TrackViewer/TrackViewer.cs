@@ -639,7 +639,7 @@ namespace ORTS.TrackViewer
             ScreenW = Window.ClientBounds.Width;
             ScreenH = Window.ClientBounds.Height;
             // if something went wrong during fast window switching, let's not continue
-            if (menuControl == null || statusBarControl == null || ScreenW == 0 || ScreenH == 0)
+             if (ScreenW == 0 || ScreenH == 0) 
             {
                 return;
             }
@@ -1136,7 +1136,7 @@ namespace ORTS.TrackViewer
 
         void CalculateFPS(GameTime gameTime)
         {
-            float elapsedRealTime = (float)gameTime.TotalGameTime.TotalSeconds;
+            float elapsedRealTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
             FrameRate.Update(elapsedRealTime, 1f / elapsedRealTime);
         }
 
