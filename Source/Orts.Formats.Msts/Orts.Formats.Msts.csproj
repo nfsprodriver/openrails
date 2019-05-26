@@ -50,6 +50,10 @@
     <Compile Include="CabViewFile.cs" />
     <Compile Include="EngineFile.cs" />
     <Compile Include="EnvironmentFile.cs" />
+    <Compile Include="Signalling\Enums.cs" />
+    <Compile Include="Signalling\Parser.cs" />
+    <Compile Include="Signalling\Tokenizer.cs" />
+    <Compile Include="Signalling\Tokens.cs" />
     <Compile Include="SignalScripts.cs" />
     <Compile Include="TerrainFlagsFile.cs" />
     <Compile Include="HazardFile.cs" />
@@ -89,6 +93,9 @@
       <Project>{6AB8B673-5775-4536-A58A-BA0A15899583}</Project>
       <Name>ORTS.IO</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

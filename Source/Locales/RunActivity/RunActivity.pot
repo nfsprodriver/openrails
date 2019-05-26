@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2019-05-21 01:04:11+0200\n"
-"PO-Revision-Date: 2019-05-21 01:04:11+0200\n"
+"POT-Creation-Date: 2019-05-27 00:33:56+0200\n"
+"PO-Revision-Date: 2019-05-27 00:33:57+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -47,14 +47,14 @@ msgstr ""
 msgid "3D Cab"
 msgstr ""
 
-#: ../../RunActivity/Viewer3D/Materials.cs:184
+#: ../../RunActivity/Viewer3D/Materials.cs:200
 #, csharp-format
 msgid "{0:F0} texture"
 msgid_plural "{0:F0} textures"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../../RunActivity/Viewer3D/Materials.cs:441
+#: ../../RunActivity/Viewer3D/Materials.cs:457
 #, csharp-format
 msgid "{0:F0} material"
 msgid_plural "{0:F0} materials"

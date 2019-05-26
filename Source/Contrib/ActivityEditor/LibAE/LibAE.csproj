@@ -64,7 +64,9 @@
     <Folder Include="OR\" />
     <Folder Include="Utility\" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Orts.Formats.Msts\Orts.Formats.Msts.csproj">
       <Project>{570709fa-0c8a-4b1d-ba2d-d9455afd9b5c}</Project>
