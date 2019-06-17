@@ -658,7 +658,7 @@ namespace Orts.Viewer3D
         [CallOnThread("Render")]
         public void Draw(GraphicsDevice graphicsDevice)
         {
-            var logging = UserInput.InputSettings != null && UserInput.IsPressed(UserCommands.DebugLogRenderFrame);
+            var logging = UserInput.IsPressed(UserCommands.DebugLogRenderFrame);
             if (logging)
             {
                 Console.WriteLine();
