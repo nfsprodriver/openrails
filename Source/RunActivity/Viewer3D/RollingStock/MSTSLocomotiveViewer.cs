@@ -264,7 +264,6 @@ namespace Orts.Viewer3D.RollingStock
             {
                 if (ThreeDimentionCabViewer != null)
                     ThreeDimentionCabViewer.PrepareFrame(frame, elapsedTime);
-                return;
             }
 
             // Wipers and bell animation
@@ -275,7 +274,6 @@ namespace Orts.Viewer3D.RollingStock
             if (Viewer.Camera.AttachedCar == this.MSTSWagon &&
                 Viewer.Camera.Style == Camera.Styles.Cab)
             {
-
                 if (_CabRenderer != null)
                     _CabRenderer.PrepareFrame(frame, elapsedTime);
             }
@@ -1018,8 +1016,7 @@ namespace Orts.Viewer3D.RollingStock
         private int ShaderKey = 1;  // Shader Key must refer to only o
 
         private Point _PrevScreenSize;
-
-        //private List<CabViewControls> CabViewControlsList = new List<CabViewControls>();
+        
         private List<List<CabViewControlRenderer>> CabViewControlRenderersList = new List<List<CabViewControlRenderer>>();
         private Viewer _Viewer;
         private MSTSLocomotive _Locomotive;
